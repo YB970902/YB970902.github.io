@@ -203,18 +203,30 @@ public enum DiagonalDirect
     End = 4,
 }
 
+// 상하좌우 방향을 빠르게 찾기 위한 룩업테이블
+static readonly int[] dtX = { 0, 0, -1, 1 };
+static readonly int[] dtY = { 1, -1, 0, 0 };
+static readonly bool[] dirOpen = { false, false, false, false };
+
+// 대각선 방향을 빠르게 찾기 위한 룩업테이블
+static readonly int[] dgX = { -1, 1, -1, 1 };
+static readonly int[] dgY = { 1, 1, -1, -1 };
+static readonly (int, int)[] dgB = {
+    ((int)Direct.Left, (int)Direct.Up),
+    ((int)Direct.Right, (int)Direct.Up),
+    ((int)Direct.Left, (int)Direct.Down),
+    ((int)Direct.Right, (int)Direct.Down)
+};
+
+/// <summary> 주변 타일 반환용 리스트. FindNearTile에서만 사용된다. </summary>
+private List<AstarTile> nearTileResult = new List<AstarTile>(8);
+
 private List<AstarTile> FindNearTile(AstarTile curTile)
 {
-    List<AstarTile> result = new List<AstarTile>(8);
-
+    nearTileResult.Clear();
+        
     int curX = curTile.Index % TileManager.WidthCount;
     int curY = curTile.Index / TileManager.WidthCount;
-
-    // 상하좌우 방향을 빠르게 찾기 위한 룩업테이블
-    int[] dtX = { -1, 1, 0, 0 };
-    int[] dtY = { 0, 0, 1, -1 };
-
-    bool[] dirOpen = { false, false, false, false };
 
     // 상하좌우 검사부터 한다.
     for (Direct i = Direct.Start + 1; i < Direct.End; ++i)
@@ -224,18 +236,8 @@ private List<AstarTile> FindNearTile(AstarTile curTile)
         int y = curY + dtY[index];
 
         dirOpen[index] = IsOpenableTile(x, y);
-        if (dirOpen[index]) result.Add(tileList[x + y * TileManager.WidthCount]);
+        if (dirOpen[index]) nearTileResult.Add(tileList[x + y * TileManager.WidthCount]);
     }
-
-    // 대각선 방향을 빠르게 찾기 위한 룩업테이블
-    int[] dgX = { -1, 1, -1, 1 };
-    int[] dgY = { 1, 1, -1, -1 };
-    (int, int)[] dgB = {
-        ((int)Direct.Left, (int)Direct.Up),
-        ((int)Direct.Right, (int)Direct.Up),
-        ((int)Direct.Left, (int)Direct.Down),
-        ((int)Direct.Right, (int)Direct.Down)
-    };
 
     // 대각선 검사를 한다.
     for (DiagonalDirect i = DiagonalDirect.Start + 1; i < DiagonalDirect.End; ++i)
@@ -246,10 +248,10 @@ private List<AstarTile> FindNearTile(AstarTile curTile)
 
         if (dirOpen[dgB[index].Item1] &&
             dirOpen[dgB[index].Item2] &&
-            IsOpenableTile(x, y)) result.Add(tileList[x + y * TileManager.WidthCount]);
+            IsOpenableTile(x, y)) nearTileResult.Add(tileList[x + y * TileManager.WidthCount]);
     }
 
-    return result;
+    return nearTileResult;
 }
 ```
 
