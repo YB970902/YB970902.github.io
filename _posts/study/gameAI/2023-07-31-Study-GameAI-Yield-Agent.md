@@ -2,7 +2,7 @@
 layout: post
 title: 게임 AI - 양보하는 에이전트
 categories: [공부 - 게임 AI]
-tags: [길찾기 AI]
+tags: [자동적 에이전트]
 ---
 
 ## 개요
