@@ -62,12 +62,12 @@ tags: [자동적 에이전트]
 
 에이전트끼리 마주보고 있다면 똑같은 시간동안 대기하다가 새로운 경로를 찾는다. 만약 새로운 경로도 서로 마주보는 경로라면 두 에이전트가 서로 옆으로 비켜주면서 전진하지 못하는 문제가 생긴다.  
 
-![](//www.youtube.com/watch?v=4d2BXXLYxrU)
+ {% include video.html id="4d2BXXLYxrU" %}
 <center>서로 양보만 하다가 나아가지 못하는 모습이 종종 연출된다</center>
 
 이를 해결하기 위해서 일정시간 이상 기다렸음에도 여전히 점유중이라면, 한번 더 기다리거나 새로운 경로로 빠르게 이동하도록 했다.
 
-![](//www.youtube.com/watch?v=odIw4yxAmIE)
+{% include video.html id="odIw4yxAmIE" %}
 <center>나아가지 못하는 모습이 연출되긴 하지만, 빈도가 확연히 줄었다.</center>
 
 ### 겹치지 않았는데 왜 실패한 알고리즘인가?
