@@ -1,6 +1,6 @@
 ---
 layout: post
-title: EternalSmash - 행동트리 에디터 만들기
+title: EternalSmash - 행동트리 에디터 만들기 1
 categories: [사이드 프로젝트 - EternalSmash]
 tags: [사이드 프로젝트]
 ---
