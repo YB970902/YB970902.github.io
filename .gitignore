@@ -3,3 +3,10 @@
 .sass-cache
 _site
 Gemfile.lock
+*.DS_Store
+_posts/study/gameAI/.DS_Store
+_posts/study/.DS_Store
+assets/images/study/gameAI/.DS_Store
+assets/images/study/.DS_Store
+assets/images/.DS_Store
+assets/.DS_Store
