@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 게임 AI - 조종행동(SteeringBehavior) - 2 비켜주기
+title: 게임 AI - 조종행동(SteeringBehavior) - 2
 categories: [공부 - 게임 AI]
 tags: [조종행동]
 ---
